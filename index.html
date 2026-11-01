@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="الموقع الشخصي لاسامه الحداد، المهتم بالهندسة المعمارية والهندسة المدنية.">
+
+<title>اسامه الحداد | موقعي الشخصي</title>
+
+<style>
+:root {
+  --bg: #fcfbf9;
+  --paper: #ffffff;
+  --ink: #2c3e50;
+  --navy: #2c3e50;
+  --navy-light: #354b60;
+  --accent: #e67e22;
+  --text: #333333;
+  --muted: #777777;
+  --line: #e5e2dc;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.9;
+  overflow-x: hidden;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: min(1100px, 90%);
+  margin: auto;
+}
+
+/* Arabic text: same layout as English/Turkish, only the text itself reads right-to-left */
+
+html[lang="ar"] [data-ar] {
+  direction: rtl;
+  text-align: inherit;
+}
+
+/* Orange line under titles */
+
+.title-line::after {
+  content: "";
+  display: block;
+  width: 65px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: 14px;
+}
+
+/* Header */
+
+header {
+  width: 100%;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: relative;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--navy);
+  letter-spacing: 1px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Language Button */
+
+.language-btn {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--white);
+  padding: 7px 16px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.language-btn:hover {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.menu-btn {
+  width: 35px;
+  height: 35px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 101;
+}
+
+.menu-btn span {
+  height: 2px;
+  width: 25px;
+  background: var(--navy);
+  display: block;
+  transition: 0.3s;
+}
+
+/* Navigation */
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  max-width: 85%;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--navy);
+  color: var(--white);
+  padding: 100px 35px 40px;
+  z-index: 1001;
+  transform: translateX(110%);
+  visibility: hidden;
+  transition:
+    transform 0.4s ease,
+    visibility 0.4s ease;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.nav-menu.active {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  font-size: 15px;
+  transition:
+    color 0.3s ease,
+    padding 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--accent);
+  padding-left: 10px;
+}
+
+/* Close Menu Button */
+
+.close-menu {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+  z-index: 1002;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.close-menu:hover {
+  color: var(--accent);
+}
+
+/* Backdrop */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(44,62,80,0.45);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hero */
+
+.hero {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  padding: 90px 0;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-label {
+  color: var(--navy);
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 7vw, 78px);
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 5px;
+}
+
+.hero-email {
+  display: inline-block;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  color: var(--navy);
+  direction: ltr;
+  text-align: left;
+  text-decoration: none;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  opacity: 0.75;
+  transition: 0.3s ease;
+}
+
+.hero-email:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.hero h2 {
+  font-size: clamp(19px, 3vw, 29px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.hero p {
+  color: var(--text);
+  max-width: 650px;
+  font-size: 15px;
+}
+
+.hero-line {
+  width: 65px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: 35px;
+}
+
+/* General Sections */
+
+section {
+  padding: 100px 0;
+  scroll-margin-top: 20px;
+}
+
+.section-label {
+  color: var(--accent);
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.section-title {
+  color: var(--navy);
+  font-size: clamp(27px, 4vw, 43px);
+  font-weight: 500;
+  margin-bottom: 35px;
+  line-height: 1.5;
+}
+
+.section-intro {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 700px;
+  margin-bottom: 50px;
+}
+
+/* About */
+
+.about {
+  background: var(--paper);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-text p {
+  margin-bottom: 22px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.stats {
+  border-top: 1px solid var(--line);
+}
+
+.stat {
+  padding: 25px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.stat-number {
+  font-size: 35px;
+  color: var(--navy);
+  font-family: Georgia, serif;
+  direction: ltr;
+  text-align: left;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Portfolio */
+
+.portfolio {
+  background: var(--bg);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.project-card {
+  background: var(--paper);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(44,62,80,0.08);
+}
+
+.project-image {
+  width: 100%;
+  height: 280px;
+  background: #f0eee9;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 25px;
+}
+
+.project-number {
+  color: var(--accent);
+  font-size: 12px;
+  margin-bottom: 8px;
+  direction: ltr;
+  text-align: left;
+}
+
+.project-info h3 {
+  color: var(--navy);
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.project-info p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Vision */
+
+.vision {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.vision .section-label {
+  color: var(--accent);
+}
+
+.vision .section-title {
+  color: var(--white);
+}
+
+.vision .section-intro {
+  color: #e2e7ec;
+}
+
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.vision-card {
+  background: var(--navy-light);
+  padding: 35px 25px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.vision-card:hover {
+  transform: translateY(-5px);
+  background: #3b536b;
+}
+
+.vision-card .number {
+  color: var(--accent);
+  font-family: Georgia, serif;
+  font-size: 30px;
+  margin-bottom: 20px;
+  direction: ltr;
+  text-align: left;
+}
+
+.vision-card h3 {
+  color: var(--white);
+  font-size: 19px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.vision-card p {
+  color: #e2e7ec;
+  font-size: 13px;
+}
+
+/* Education */
+
+.education {
+  background: var(--paper);
+}
+
+.education-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 40px;
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+}
+
+.education-year {
+  color: var(--accent);
+  font-family: Georgia, serif;
+  font-size: 18px;
+  direction: ltr;
+  text-align: left;
+}
+
+.education-content h3 {
+  color: var(--navy);
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.education-content p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Research */
+
+.research {
+  background: var(--bg);
+}
+
+.research-content {
+  max-width: 750px;
+}
+
+.research-content p {
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+.research-note {
+  border-left: 3px solid var(--accent);
+  padding: 20px 25px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 35px;
+}
+
+/* Contact */
+
+.contact {
+  background: var(--paper);
+  text-align: center;
+}
+
+.contact .section-title {
+  margin-bottom: 20px;
+}
+
+.contact p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+
+.contact-email {
+  display: inline-block;
+  font-family: Georgia, serif;
+  font-size: clamp(18px, 3vw, 26px);
+  color: var(--navy);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 8px;
+  direction: ltr;
+}
+
+.contact-email:hover {
+  color: var(--accent);
+}
+
+.cv-link {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 25px;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.cv-link:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* Footer */
+
+footer {
+  background: var(--navy);
+  color: #e2e7ec;
+  padding: 25px 0;
+  font-size: 12px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-name {
+  color: var(--white);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .hero {
+    min-height: auto;
+    padding: 100px 0;
+  }
+
+  section {
+    padding: 70px 0;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-image {
+    height: 230px;
+  }
+
+  .vision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .container {
+    width: 88%;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .header-controls {
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .hero-email {
+    font-size: 13px;
+  }
+
+  .project-info {
+    padding: 20px;
+  }
+
+  .nav-menu {
+    width: 270px;
+    max-width: 85%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+
+<header>
+  <div class="container header-inner">
+
+    <a href="#home" class="logo">
+      Osama Al-Haddad
+    </a>
+
+    <div class="header-controls">
+
+      <button
+        class="language-btn"
+        id="languageBtn"
+        type="button">
+        English
+      </button>
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        type="button"
+        aria-label="فتح القائمة"
+        aria-expanded="false"
+        aria-controls="navMenu">
+
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<!-- Navigation -->
+
+<div
+  class="backdrop"
+  id="backdrop">
+</div>
+
+<nav
+  class="nav-menu"
+  id="navMenu"
+  aria-hidden="true">
+
+  <button
+    class="close-menu"
+    id="closeMenuBtn"
+    type="button"
+    aria-label="إغلاق القائمة">
+    &times;
+  </button>
+
+  <a href="#home"
+     data-ar="الرئيسية"
+     data-en="Home"
+     data-tr="Ana Sayfa">
+‎    الرئيسية
+  </a>
+
+  <a href="#about"
+     data-ar="نبذة عني"
+     data-en="About Me"
+     data-tr="Hakkımda">
+‎    نبذة عني
+  </a>
+
+  <a href="#portfolio"
+     data-ar="أعمالي"
+     data-en="My Work"
+     data-tr="Çalışmalarım">
+‎    أعمالي
+  </a>
+
+  <a href="#vision"
+     data-ar="اهتماماتي"
+     data-en="My Interests"
+     data-tr="İlgi Alanlarım">
+‎    اهتماماتي
+  </a>
+
+  <a href="#education"
+     data-ar="التعليم"
+     data-en="Education"
+     data-tr="Eğitim">
+‎    التعليم
+  </a>
+
+  <a href="#research"
+     data-ar="اهتمامات بحثية"
+     data-en="Research Interests"
+     data-tr="Araştırma İlgi Alanları">
+‎    اهتمامات بحثية
+  </a>
+
+  <a href="#contact"
+     data-ar="تواصل معي"
+     data-en="Contact"
+     data-tr="İletişim">
+‎    تواصل معي
+  </a>
+
+</nav>
+
+<!-- Hero -->
+
+<main>
+
+<section class="hero" id="home">
+
+  <div class="container">
+
+    <div class="hero-content">
+
+      <div class="hero-label title-line"
+           data-ar="موقعي الشخصي"
+           data-en="MY PERSONAL WEBSITE"
+           data-tr="KİŞİSEL WEB SİTEM">
+‎        موقعي الشخصي
+      </div>
+
+      <h1
+        data-ar="اسامه الحداد"
+        data-en="Osama Al-Haddad"
+        data-tr="Osama Al-Haddad">
+‎        اسامه الحداد
+      </h1>
+
+      <a
+        href="mailto:a4440767@gmail.com"
+        class="hero-email">
+        a4440767@gmail.com
+      </a>
+
+      <h2
+        data-ar="أرغب في دراسة مجال البناء والتصميم، مع اهتمام خاص بالهندسة المعمارية والمدنية."
+        data-en="I aspire to study construction and design, with a particular interest in architecture and civil engineering."
+        data-tr="Yapı ve tasarım alanında, özellikle mimarlık ve inşaat mühendisliği üzerine eğitim almak istiyorum.">
+‎        أرغب في دراسة مجال البناء والتصميم، مع اهتمام خاص بالهندسة المعمارية والمدنية.
+      </h2>
+
+      <p
+        data-ar="أنا خريج ثانوية، ويهمني مجال البناء وكيف تنتقل الفكرة من الرسم والتصميم إلى مبنى حقيقي. لذلك أهتم بالهندسة المعمارية من ناحية التصميم والفراغات، وبالهندسة المدنية من ناحية الإنشاء وطرق تنفيذ المباني. أنشأت هذا الموقع لأعرّف بنفسي وأشارك محاولاتي وما أطمح إلى تعلمه."
+        data-en="I am a high school graduate interested in how ideas evolve from drawings and designs into real buildings. My interest lies in architecture, particularly design and spatial composition, as well as civil engineering and construction methods. I created this website to introduce myself and share my work and aspirations."
+        data-tr="Lise mezunuyum. Fikirlerin çizim ve tasarımdan gerçek yapılara nasıl dönüştüğüyle ilgileniyorum. Mimarlığın tasarım ve mekân boyutuna, ayrıca inşaat mühendisliğinin yapı ve uygulama süreçlerine ilgi duyuyorum. Bu siteyi kendimi tanıtmak ve çalışmalarımı paylaşmak amacıyla oluşturdum.">
+‎        أنا خريج ثانوية، ويهمني مجال البناء وكيف تنتقل الفكرة من الرسم والتصميم إلى مبنى حقيقي. لذلك أهتم بالهندسة المعمارية من ناحية التصميم والفراغات، وبالهندسة المدنية من ناحية الإنشاء وطرق تنفيذ المباني. أنشأت هذا الموقع لأعرّف بنفسي وأشارك محاولاتي وما أطمح إلى تعلمه.
+      </p>
+
+      <div class="hero-line"></div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- About -->
+
+<section class="about" id="about">
+
+  <div class="container">
+
+    <h2 class="section-title title-line"
+        data-ar="نبذة عني"
+        data-en="About Me"
+        data-tr="Hakkımda">
+‎      نبذة عني
+    </h2>
+
+    <div class="about-grid">
+
+      <div class="about-text">
+
+        <p
+          data-ar="اسمي اسامه أحمد محمد الحداد. أنهيت المرحلة الثانوية في المملكة العربية السعودية عام 2024، وكان معدلي 98.23%."
+          data-en="My name is Osama Ahmed Mohammed Al-Haddad. I completed high school in Saudi Arabia in 2024 with a GPA of 98.23%."
+          data-tr="Benim adım Osama Ahmed Mohammed Al-Haddad. 2024 yılında Suudi Arabistan'da lise eğitimimi %98,23 not ortalamasıyla tamamladım.">
+‎          اسمي اسامه أحمد محمد الحداد. أنهيت المرحلة الثانوية في المملكة العربية السعودية عام 2024، وكان معدلي 98.23%.
+        </p>
+
+        <p
+          data-ar="بدأ اهتمامي بالعمارة من ملاحظتي للمباني من حولي؛ شكل الواجهات، وتوزيع النوافذ، وطريقة دخول الضوء، وكذلك طريقة بناء المبنى وثباته. ومع الوقت أدركت أن التصميم والإنشاء جانبان يكمل أحدهما الآخر. ما زلت في بداية الطريق، وأعرف أن أمامي الكثير لأتعلمه."
+          data-en="My interest in architecture began with observing the buildings around me: their facades, window arrangements, the way light enters, and how structures are built and supported. Over time, I came to understand that design and construction are two complementary aspects of the same field. I am still at the beginning of this journey and have much to learn."
+          data-tr="Mimarlığa olan ilgim çevremdeki binaları gözlemlemekle başladı: cepheleri, pencerelerin yerleşimi, ışığın içeri girişi ve yapıların nasıl inşa edildiği. Zamanla tasarım ve yapımın birbirini tamamlayan iki alan olduğunu fark ettim. Bu yolculuğun henüz başındayım ve öğrenecek çok şeyim var.">
+‎          بدأ اهتمامي بالعمارة من ملاحظتي للمباني من حولي؛ شكل الواجهات، وتوزيع النوافذ، وطريقة دخول الضوء، وكذلك طريقة بناء المبنى وثباته. ومع الوقت أدركت أن التصميم والإنشاء جانبان يكمل أحدهما الآخر. ما زلت في بداية الطريق، وأعرف أن أمامي الكثير لأتعلمه.
+        </p>
+
+        <p
+          data-ar="أرغب في دراسة أحد التخصصين المرتبطين بتصميم المباني وإنشائها، وتظل الهندسة المعمارية الأقرب إلى ميولي بسبب اهتمامي بالرسم والتصميم. كما أرى أن الهندسة المدنية تكمل هذا المجال من خلال فهم الهياكل ومواد البناء والتنفيذ. وأتطلع إلى الدراسة في تركيا والتعرف على تجاربها المعمارية والهندسية."
+          data-en="I hope to study a field related to building design and construction. Architecture is especially close to my interests because of my passion for drawing and design. I also see civil engineering as a complementary discipline that provides an understanding of structures, materials, and construction. I look forward to studying in Turkey and exploring its architectural and engineering experiences."
+          data-tr="Bina tasarımı ve yapımıyla ilgili bir alanda eğitim almak istiyorum. Çizim ve tasarıma olan ilgim nedeniyle mimarlık bana daha yakın geliyor. İnşaat mühendisliğinin ise taşıyıcı sistemler, yapı malzemeleri ve uygulama süreçleri açısından bu alanı tamamladığını düşünüyorum. Türkiye'de eğitim almayı ve ülkenin mimarlık ve mühendislik deneyimlerini tanımayı hedefliyorum.">
+‎          أرغب في دراسة أحد التخصصين المرتبطين بتصميم المباني وإنشائها، وتظل الهندسة المعمارية الأقرب إلى ميولي بسبب اهتمامي بالرسم والتصميم. كما أرى أن الهندسة المدنية تكمل هذا المجال من خلال فهم الهياكل ومواد البناء والتنفيذ. وأتطلع إلى الدراسة في تركيا والتعرف على تجاربها المعمارية والهندسية.
+        </p>
+
+      </div>
+
+      <div class="stats">
+
+        <div class="stat">
+
+          <div class="stat-number">98.23%</div>
+
+          <div class="stat-label"
+               data-ar="المعدل في الثانوية"
+               data-en="High School GPA"
+               data-tr="Lise Not Ortalaması">
+‎            المعدل في الثانوية
+          </div>
+
+        </div>
+
+        <div class="stat">
+
+          <div class="stat-number">2024</div>
+
+          <div class="stat-label"
+               data-ar="سنة التخرج"
+               data-en="Graduation Year"
+               data-tr="Mezuniyet Yılı">
+‎            سنة التخرج
+          </div>
+
+        </div>
+
+        <div class="stat">
+
+          <div class="stat-number"
+               style="font-family: Tahoma, Arial, sans-serif; font-size: 20px;"
+               data-ar="الهندسة المعمارية والهندسة المدنية"
+               data-en="Architecture and Civil Engineering"
+               data-tr="Mimarlık ve İnşaat Mühendisliği">
+‎            الهندسة المعمارية والهندسة المدنية
+          </div>
+
+          <div class="stat-label"
+               data-ar="التخصصان اللذان أطمح إلى دراستهما"
+               data-en="Fields I Aspire to Study"
+               data-tr="Eğitim Almak İstediğim Alanlar">
+‎            التخصصان اللذان أطمح إلى دراستهما
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Portfolio -->
+
+<section class="portfolio" id="portfolio">
+
+  <div class="container">
+
+    <div class="section-label"
+         data-ar="أعمال وتجارب"
+         data-en="WORK & EXPERIMENTS"
+         data-tr="ÇALIŞMALAR VE DENEYLER">
+‎      أعمال وتجارب
+    </div>
+
+    <h2 class="section-title"
+        data-ar="محاولات في الرسم والتصميم"
+        data-en="Drawing & Design Experiments"
+        data-tr="Çizim ve Tasarım Denemeleri">
+‎      محاولات في الرسم والتصميم
+    </h2>
+
+    <p class="section-intro"
+       data-ar="مجموعة من المحاولات الأولية التي تعكس اهتمامي بالرسم، وتكوين الكتل، والتفاصيل المعمارية. أعتبرها جزءًا من رحلة التعلم والتطوير."
+       data-en="A collection of early experiments reflecting my interest in drawing, mass composition, and architectural details. I consider them part of my learning and development journey."
+       data-tr="Çizime, kütle kompozisyonuna ve mimari detaylara olan ilgimi yansıtan ilk denemeler. Bunları öğrenme ve gelişme sürecimin bir parçası olarak görüyorum.">
+‎      مجموعة من المحاولات الأولية التي تعكس اهتمامي بالرسم، وتكوين الكتل، والتفاصيل المعمارية. أعتبرها جزءًا من رحلة التعلم والتطوير.
+    </p>
+
+    <div class="portfolio-grid">
+
+      <article class="project-card">
+
+        <div class="project-image">
+          <img src="images/perspective.jpg"
+               alt="رسم منظور معماري"
+               onerror="this.style.display='none'">
+        </div>
+
+        <div class="project-info">
+
+          <div class="project-number">01</div>
+
+          <h3
+            data-ar="رسم المنظور"
+            data-en="Perspective Drawing"
+            data-tr="Perspektif Çizimi">
+‎            رسم المنظور
+          </h3>
+
+          <p
+            data-ar="محاولة لفهم العمق والأبعاد وكيفية تمثيل المبنى على سطح ثنائي الأبعاد."
+            data-en="An attempt to understand depth, dimensions, and how a building is represented on a two-dimensional surface."
+            data-tr="Derinliği, boyutları ve bir yapının iki boyutlu yüzeyde nasıl gösterildiğini anlamaya yönelik bir deneme.">
+‎            محاولة لفهم العمق والأبعاد وكيفية تمثيل المبنى على سطح ثنائي الأبعاد.
+          </p>
+
+        </div>
+
+      </article>
+
+      <article class="project-card">
+
+        <div class="project-image">
+          <img src="images/massing.jpg"
+               alt="تكوين الكتل المعمارية"
+               onerror="this.style.display='none'">
+        </div>
+
+        <div class="project-info">
+
+          <div class="project-number">02</div>
+
+          <h3
+            data-ar="تكوين الكتل"
+            data-en="Massing Study"
+            data-tr="Kütle Çalışması">
+‎            تكوين الكتل
+          </h3>
+
+          <p
+            data-ar="تجربة في توزيع الكتل والأحجام، ومحاولة إيجاد توازن بصري بينها."
+            data-en="An experiment in arranging forms and volumes while exploring visual balance between them."
+            data-tr="Formları ve hacimleri düzenleme, aralarında görsel denge oluşturma denemesi.">
+‎            تجربة في توزيع الكتل والأحجام، ومحاولة إيجاد توازن بصري بينها.
+          </p>
+
+        </div>
+
+      </article>
+
+      <article class="project-card">
+
+        <div class="project-image">
+          <img src="images/facade.jpg"
+               alt="رسم واجهة معمارية"
+               onerror="this.style.display='none'">
+        </div>
+
+        <div class="project-info">
+
+          <div class="project-number">03</div>
+
+          <h3
+            data-ar="دراسة الواجهات"
+            data-en="Facade Study"
+            data-tr="Cephe Çalışması">
+‎            دراسة الواجهات
+          </h3>
+
+          <p
+            data-ar="ملاحظة العلاقة بين النوافذ والفتحات والتفاصيل، وتأثيرها في شكل الواجهة."
+            data-en="Observing the relationship between windows, openings, and details, and their impact on a facade."
+            data-tr="Pencereler, açıklıklar ve detaylar arasındaki ilişkiyi ve cephe üzerindeki etkilerini inceleme.">
+‎            ملاحظة العلاقة بين النوافذ والفتحات والتفاصيل، وتأثيرها في شكل الواجهة.
+          </p>
+
+        </div>
+
+      </article>
+
+      <article class="project-card">
+
+        <div class="project-image">
+          <img src="images/islamic.jpg"
+               alt="رسم مستوحى من العمارة الإسلامية"
+               onerror="this.style.display='none'">
+        </div>
+
+        <div class="project-info">
+
+          <div class="project-number">04</div>
+
+          <h3
+            data-ar="تفاصيل معمارية"
+            data-en="Architectural Details"
+            data-tr="Mimari Detaylar">
+‎            تفاصيل معمارية
+          </h3>
+
+          <p
+            data-ar="اهتمام بالتفاصيل والزخارف والعناصر التي تمنح المباني هويتها المعمارية."
+            data-en="An interest in details, patterns, and elements that give buildings their architectural identity."
+            data-tr="Binalara mimari kimlik kazandıran detaylara, desenlere ve öğelere duyulan ilgi.">
+‎            اهتمام بالتفاصيل والزخارف والعناصر التي تمنح المباني هويتها المعمارية.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Vision -->
+
+<section class="vision" id="vision">
+
+  <div class="container">
+
+    <div class="section-label"
+         data-ar="توجهات"
+         data-en="PERSPECTIVES"
+         data-tr="BAKIŞ AÇILARI">
+‎      توجهات
+    </div>
+
+    <h2 class="section-title"
+        data-ar="ما يهمني في العمارة"
+        data-en="What Interests Me in Architecture"
+        data-tr="Mimarlıkta İlgi Duyduğum Konular">
+‎      ما يهمني في العمارة
+    </h2>
+
+    <p class="section-intro"
+       data-ar="أميل إلى النظر للمبنى باعتباره أكثر من شكل؛ فهو مساحة مرتبطة بمكانها، وبالناس الذين يستخدمونها، وبالضوء والمواد التي تكوّنها."
+       data-en="I see a building as more than a form. It is a space connected to its location, the people who use it, and the light and materials that shape it."
+       data-tr="Bir yapıyı yalnızca biçim olarak değil; bulunduğu yerle, onu kullanan insanlarla, ışık ve malzemelerle ilişkili bir mekân olarak görüyorum.">
+‎      أميل إلى النظر للمبنى باعتباره أكثر من شكل؛ فهو مساحة مرتبطة بمكانها، وبالناس الذين يستخدمونها، وبالضوء والمواد التي تكوّنها.
+    </p>
+
+    <div class="vision-grid">
+
+      <article class="vision-card">
+
+        <div class="number">01</div>
+
+        <h3
+          data-ar="علاقة المبنى بمكانه"
+          data-en="Building & Context"
+          data-tr="Yapı ve Çevresi">
+‎          علاقة المبنى بمكانه
+        </h3>
+
+        <p
+          data-ar="يهمني كيف يتأثر تصميم المبنى بموقعه ومناخه وثقافة المكان، وكيف يمكن أن يكون جزءًا من محيطه بدلًا من أن يكون منفصلًا عنه."
+          data-en="I am interested in how a building's design responds to its location, climate, and culture, becoming part of its surroundings rather than separate from them."
+          data-tr="Bir yapının tasarımının konumuna, iklimine ve kültürüne nasıl yanıt verdiği; çevresinden kopuk olmak yerine onun bir parçası olması ilgimi çekiyor.">
+‎          يهمني كيف يتأثر تصميم المبنى بموقعه ومناخه وثقافة المكان، وكيف يمكن أن يكون جزءًا من محيطه بدلًا من أن يكون منفصلًا عنه.
+        </p>
+
+      </article>
+
+      <article class="vision-card">
+
+        <div class="number">02</div>
+
+        <h3
+          data-ar="الضوء والفراغ"
+          data-en="Light & Space"
+          data-tr="Işık ve Mekân">
+‎          الضوء والفراغ
+        </h3>
+
+        <p
+          data-ar="أهتم بطريقة دخول الضوء إلى المبنى، وكيف يغيّر الإحساس بالمساحة، ويؤثر في تجربة الإنسان داخل المكان."
+          data-en="I am interested in how light enters a building, changes the perception of space, and influences the human experience within it."
+          data-tr="Işığın yapıya nasıl girdiği, mekân algısını nasıl değiştirdiği ve insanın mekân içindeki deneyimini nasıl etkilediği ilgimi çekiyor.">
+‎          أهتم بطريقة دخول الضوء إلى المبنى، وكيف يغيّر الإحساس بالمساحة، ويؤثر في تجربة الإنسان داخل المكان.
+        </p>
+
+      </article>
+
+      <article class="vision-card">
+
+        <div class="number">03</div>
+
+        <h3
+          data-ar="التراث والعمارة الحديثة"
+          data-en="Heritage & Modern Architecture"
+          data-tr="Miras ve Modern Mimarlık">
+‎          التراث والعمارة الحديثة
+        </h3>
+
+        <p
+          data-ar="يجذبني فهم العناصر المعمارية التقليدية، وكيف يمكن الاستفادة منها في تصميم معاصر يحافظ على الهوية ويستجيب لاحتياجات الحياة الحالية."
+          data-en="I am drawn to traditional architectural elements and how they can inform contemporary design while preserving identity and responding to modern needs."
+          data-tr="Geleneksel mimari öğelerin çağdaş tasarıma nasıl katkı sağlayabileceği, kimliği korurken günümüz ihtiyaçlarına nasıl yanıt verebileceği ilgimi çekiyor.">
+‎          يجذبني فهم العناصر المعمارية التقليدية، وكيف يمكن الاستفادة منها في تصميم معاصر يحافظ على الهوية ويستجيب لاحتياجات الحياة الحالية.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Education -->
+
+<section class="education" id="education">
+
+  <div class="container">
+
+    <div class="section-label"
+         data-ar="المسار الدراسي"
+         data-en="ACADEMIC BACKGROUND"
+         data-tr="EĞİTİM GEÇMİŞİ">
+‎      المسار الدراسي
+    </div>
+
+    <h2 class="section-title"
+        data-ar="التعليم"
+        data-en="Education"
+        data-tr="Eğitim">
+‎      التعليم
+    </h2>
+
+    <div class="education-item">
+
+      <div class="education-year">2024</div>
+
+      <div class="education-content">
+
+        <h3
+          data-ar="شهادة الثانوية العامة"
+          data-en="High School Diploma"
+          data-tr="Lise Diploması">
+‎          شهادة الثانوية العامة
+        </h3>
+
+        <p
+          data-ar="المملكة العربية السعودية — معدل 98.23%"
+          data-en="Saudi Arabia — GPA: 98.23%"
+          data-tr="Suudi Arabistan — Not ortalaması: %98,23">
+‎          المملكة العربية السعودية — معدل 98.23%
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="education-item">
+
+      <div class="education-year"
+           data-ar="المرحلة القادمة"
+           data-en="NEXT STEP"
+           data-tr="SONRAKİ ADIM">
+‎        المرحلة القادمة
+      </div>
+
+      <div class="education-content">
+
+        <h3
+          data-ar="الهندسة المعمارية أو الهندسة المدنية"
+          data-en="Architecture or Civil Engineering"
+          data-tr="Mimarlık veya İnşaat Mühendisliği">
+‎          الهندسة المعمارية أو الهندسة المدنية
+        </h3>
+
+        <p
+          data-ar="أطمح إلى مواصلة دراستي الجامعية في مجال البناء والتصميم، والتعمق في فهم المباني من ناحية التصميم والإنشاء."
+          data-en="I aspire to pursue university studies in construction and design, developing a deeper understanding of buildings from both design and structural perspectives."
+          data-tr="Yapı ve tasarım alanında üniversite eğitimime devam ederek binaları tasarım ve yapısal açıdan daha derinlemesine anlamayı hedefliyorum.">
+‎          أطمح إلى مواصلة دراستي الجامعية في مجال البناء والتصميم، والتعمق في فهم المباني من ناحية التصميم والإنشاء.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Research -->
+
+<section class="research" id="research">
+
+  <div class="container">
+
+    <div class="section-label"
+         data-ar="قراءات واهتمامات"
+         data-en="READING & INTERESTS"
+         data-tr="OKUMA VE İLGİ ALANLARI">
+‎      قراءات واهتمامات
+    </div>
+
+    <h2 class="section-title"
+        data-ar="اهتمامات بحثية"
+        data-en="Research Interests"
+        data-tr="Araştırma İlgi Alanları">
+‎      اهتمامات بحثية
+    </h2>
+
+    <div class="research-content">
+
+      <p
+        data-ar="أهتم بالتعرف على العمارة في ثقافات مختلفة، وخاصة العمارة العثمانية والعمارة اليمنية. يجذبني اختلاف أساليب البناء والمواد المستخدمة، وكيف تعبّر المباني عن تاريخ المكان وثقافته."
+        data-en="I am interested in exploring architecture across different cultures, particularly Ottoman and Yemeni architecture. I am drawn to the differences in construction methods and materials, and how buildings express the history and culture of their surroundings."
+        data-tr="Farklı kültürlerdeki mimarlığı, özellikle Osmanlı ve Yemen mimarisini keşfetmekle ilgileniyorum. Yapım yöntemleri ve kullanılan malzemelerdeki farklılıklar ile yapıların çevrelerinin tarihini ve kültürünü nasıl yansıttığı ilgimi çekiyor.">
+‎        أهتم بالتعرف على العمارة في ثقافات مختلفة، وخاصة العمارة العثمانية والعمارة اليمنية. يجذبني اختلاف أساليب البناء والمواد المستخدمة، وكيف تعبّر المباني عن تاريخ المكان وثقافته.
+      </p>
+
+      <p
+        data-ar="في العمارة العثمانية، يلفت انتباهي استخدام القباب وتوزيع الضوء داخل المساجد، والعلاقة بين الفراغ الداخلي والعناصر المعمارية. أما في العمارة اليمنية، فأهتم باستخدام الحجر والطين، والنوافذ التقليدية، والتفاصيل التي تمنح المباني طابعها المميز."
+        data-en="In Ottoman architecture, I am particularly interested in domes, the distribution of light within mosques, and the relationship between interior spaces and architectural elements. In Yemeni architecture, I am drawn to the use of stone and earth, traditional windows, and the details that give buildings their distinctive character."
+        data-tr="Osmanlı mimarisinde kubbelerin kullanımına, camilerde ışığın dağılımına ve iç mekân ile mimari öğeler arasındaki ilişkiye ilgi duyuyorum. Yemen mimarisinde ise taş ve kerpiç kullanımı, geleneksel pencereler ve yapılara özgün karakter kazandıran detaylar dikkatimi çekiyor.">
+‎        في العمارة العثمانية، يلفت انتباهي استخدام القباب وتوزيع الضوء داخل المساجد، والعلاقة بين الفراغ الداخلي والعناصر المعمارية. أما في العمارة اليمنية، فأهتم باستخدام الحجر والطين، والنوافذ التقليدية، والتفاصيل التي تمنح المباني طابعها المميز.
+      </p>
+
+      <div class="research-note"
+           data-ar="هذه الاهتمامات تمثل بداية محاولاتي في التعرف على العمارة وتحليلها، وأتطلع إلى تطويرها من خلال الدراسة والقراءة والتجربة."
+           data-en="These interests represent the beginning of my exploration of architecture and its analysis. I hope to develop them further through study, reading, and experience."
+           data-tr="Bu ilgi alanları, mimarlığı keşfetme ve analiz etme yolculuğumun başlangıcını temsil ediyor. Eğitim, okuma ve deneyim yoluyla bunları geliştirmeyi umuyorum.">
+‎        هذه الاهتمامات تمثل بداية محاولاتي في التعرف على العمارة وتحليلها، وأتطلع إلى تطويرها من خلال الدراسة والقراءة والتجربة.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Contact -->
+
+<section class="contact" id="contact">
+
+  <div class="container">
+
+    <div class="section-label"
+         data-ar="تواصل"
+         data-en="CONTACT"
+         data-tr="İLETİŞİM">
+‎      تواصل
+    </div>
+
+    <h2 class="section-title"
+        data-ar="يسعدني التواصل"
+        data-en="Let's Connect"
+        data-tr="İletişime Geçelim">
+‎      يسعدني التواصل
+    </h2>
+
+    <p
+      data-ar="للتواصل أو للاستفسار، يمكنكم مراسلتي عبر البريد الإلكتروني."
+      data-en="For inquiries or communication, feel free to reach me by email."
+      data-tr="Sorularınız veya iletişim için bana e-posta gönderebilirsiniz.">
+‎      للتواصل أو للاستفسار، يمكنكم مراسلتي عبر البريد الإلكتروني.
+    </p>
+
+    <a href="mailto:a4440767@gmail.com"
+       class="contact-email"
+       id="contactEmail">
+      a4440767@gmail.com
+    </a>
+
+    <br>
+
+    <a href="files/CV.pdf"
+       class="cv-link"
+       target="_blank"
+       rel="noopener noreferrer"
+       data-ar="عرض السيرة الذاتية"
+       data-en="View CV"
+       data-tr="Özgeçmişi Görüntüle">
+‎      عرض السيرة الذاتية
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- Footer -->
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div
+      data-ar="© 2026 اسامه الحداد"
+      data-en="© 2026 Osama Al-Haddad"
+      data-tr="© 2026 Osama Al-Haddad">
+‎      © 2026 اسامه الحداد
+    </div>
+
+    <div class="footer-name"
+         data-ar="الهندسة المعمارية والهندسة المدنية"
+         data-en="Architecture and Civil Engineering"
+         data-tr="Mimarlık ve İnşaat Mühendisliği">
+‎      الهندسة المعمارية والهندسة المدنية
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- JavaScript -->
+
+<script>
+"use strict";
+
+/* Settings */
+
+const CONTACT_EMAIL = "a4440767@gmail.com";
+
+let currentLanguage = "ar";
+
+const languages = ["ar", "en", "tr"];
+
+const languageNames = {
+  ar: "العربية",
+  en: "English",
+  tr: "Türkçe"
+};
+
+/* Elements */
+
+const languageButton = document.getElementById("languageBtn");
+const navMenu = document.getElementById("navMenu");
+const backdrop = document.getElementById("backdrop");
+const menuButton = document.getElementById("menuBtn");
+const closeMenuButton = document.getElementById("closeMenuBtn");
+
+/* Language Switcher */
+
+function applyLanguage(language) {
+
+  if (!languages.includes(language)) {
+    language = "ar";
+  }
+
+  currentLanguage = language;
+
+  document.documentElement.lang = language;
+
+  /* The page layout stays the same in every language (left-to-right).
+     Arabic text itself still reads right-to-left via CSS. */
+  document.documentElement.dir = "ltr";
+
+  const elements = document.querySelectorAll(
+    "[data-ar][data-en][data-tr]"
+  );
+
+  elements.forEach(function(element) {
+
+    const translatedText =
+      element.getAttribute("data-" + language);
+
+    if (translatedText !== null) {
+      element.textContent = translatedText;
+    }
+
+  });
+
+  if (languageButton) {
+
+    const currentIndex =
+      languages.indexOf(language);
+
+    const nextIndex =
+      (currentIndex + 1) % languages.length;
+
+    const nextLanguage =
+      languages[nextIndex];
+
+    languageButton.textContent =
+      languageNames[nextLanguage];
+
+  }
+
+}
+
+/* Switch to the next language */
+
+function switchLanguage() {
+
+  const currentIndex =
+    languages.indexOf(currentLanguage);
+
+  const nextIndex =
+    (currentIndex + 1) % languages.length;
+
+  applyLanguage(languages[nextIndex]);
+
+}
+
+/* Navigation Menu */
+
+/* Open Menu */
+
+function openMenu() {
+
+  if (!navMenu || !backdrop || !menuButton) {
+    return;
+  }
+
+  navMenu.classList.add("active");
+
+  backdrop.classList.add("active");
+
+  document.body.classList.add("menu-open");
+
+  menuButton.setAttribute(
+    "aria-expanded",
+    "true"
+  );
+
+  navMenu.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+}
+
+/* Close Menu */
+
+function closeMenu() {
+
+  if (navMenu) {
+    navMenu.classList.remove("active");
+
+    navMenu.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+  }
+
+  if (backdrop) {
+    backdrop.classList.remove("active");
+  }
+
+  document.body.classList.remove("menu-open");
+
+  if (menuButton) {
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+  }
+
+}
+
+/* Toggle Menu */
+
+function toggleMenu() {
+
+  if (!navMenu) {
+    return;
+  }
+
+  const isOpen =
+    navMenu.classList.contains("active");
+
+  if (isOpen) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+
+}
+
+/* Navigation Link Fix */
+
+if (navMenu) {
+
+  navMenu.addEventListener(
+    "click",
+    function(event) {
+
+      const link =
+        event.target.closest("a[href^='#']");
+
+      if (!link) {
+        return;
+      }
+
+      const targetId =
+        link.getAttribute("href").slice(1);
+
+      const targetSection =
+        document.getElementById(targetId);
+
+      if (!targetSection) {
+        return;
+      }
+
+      event.preventDefault();
+
+      closeMenu();
+
+      window.setTimeout(function() {
+
+        targetSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+        if (window.location.hash !== "#" + targetId) {
+
+          history.pushState(
+            null,
+            "",
+            "#" + targetId
+          );
+
+        }
+
+      }, 200);
+
+    }
+  );
+
+}
+
+/* Logo Navigation */
+
+const logo = document.querySelector(".logo");
+
+if (logo) {
+
+  logo.addEventListener(
+    "click",
+    function(event) {
+
+      const homeSection =
+        document.getElementById("home");
+
+      if (!homeSection) {
+        return;
+      }
+
+      event.preventDefault();
+
+      closeMenu();
+
+      window.setTimeout(function() {
+
+        homeSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+        history.pushState(
+          null,
+          "",
+          "#home"
+        );
+
+      }, 200);
+
+    }
+  );
+
+}
+
+/* Close Menu Controls */
+
+/* Backdrop */
+
+if (backdrop) {
+
+  backdrop.addEventListener(
+    "click",
+    closeMenu
+  );
+
+}
+
+/* Close Button */
+
+if (closeMenuButton) {
+
+  closeMenuButton.addEventListener(
+    "click",
+    function(event) {
+
+      event.preventDefault();
+
+      closeMenu();
+
+    }
+  );
+
+}
+
+/* Escape Key */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+
+  }
+);
+
+/* Language Button */
+
+if (languageButton) {
+
+  languageButton.addEventListener(
+    "click",
+    switchLanguage
+  );
+
+}
+
+/* Menu Button */
+
+if (menuButton) {
+
+  menuButton.addEventListener(
+    "click",
+    toggleMenu
+  );
+
+}
+
+/* Contact Email */
+
+const contactEmail =
+  document.getElementById("contactEmail");
+
+if (contactEmail) {
+
+  contactEmail.textContent =
+    CONTACT_EMAIL;
+
+  contactEmail.href =
+    "mailto:" + CONTACT_EMAIL;
+
+}
+
+/* Initial Settings */
+
+/* Arabic as the default language */
+
+applyLanguage("ar");
+
+/* Ensure the menu is initially closed */
+
+closeMenu();
+
+</script>
+
+</body>
